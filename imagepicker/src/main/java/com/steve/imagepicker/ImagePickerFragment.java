@@ -36,6 +36,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -56,6 +57,7 @@ public class ImagePickerFragment extends BottomSheetDialogFragment implements Im
     private static final int    RC_WRITE_STORAGE = 3;
     //private static final int RC_CROP = 3;
     private static final String DO_CROP_KEY      = "mDoCropAction";
+    private static String title;
 
     private boolean                               mDoCropAction;
     private Uri                                   mImageCaptureUri;
@@ -80,11 +82,14 @@ public class ImagePickerFragment extends BottomSheetDialogFragment implements Im
         return fragment;
     }
 
-    public static ImagePickerFragment newInstance(boolean doCrop, String deniedActionDescText,
+    public static ImagePickerFragment newInstance(boolean doCrop,
+                                                  String title,
+                                                  String deniedActionDescText,
                                                   String actionText) {
 
         shouldUseDefaultConfig = false;
         ImagePickerFragment.actionText = actionText;
+        ImagePickerFragment.title = title;
         descText = deniedActionDescText;
         return newInstance(doCrop);
     }
@@ -119,6 +124,10 @@ public class ImagePickerFragment extends BottomSheetDialogFragment implements Im
         view.findViewById(R.id.pick_camera).setOnClickListener(this);
         view.findViewById(R.id.pick_gallery).setOnClickListener(this);
         sheetContainer = (LinearLayout) view.findViewById(R.id.sheet_container);
+        if(!shouldUseDefaultConfig){
+            TextView textView = (TextView) view.findViewById(R.id.title);
+            textView.setText(title);
+        }
         return view;
     }
 
@@ -153,7 +162,7 @@ public class ImagePickerFragment extends BottomSheetDialogFragment implements Im
             Snackbar.make(sheetContainer,
                     shouldUseDefaultConfig ? "Permission previously refused; do you want to grant it ?" : descText,
                     Snackbar.LENGTH_LONG
-            ).setAction(shouldUseDefaultConfig ? "Grant" : descText, new View.OnClickListener() {
+            ).setAction(shouldUseDefaultConfig ? "Grant" : actionText, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     requestPermission();

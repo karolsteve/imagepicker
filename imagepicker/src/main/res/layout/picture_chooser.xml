@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:textSize="18sp"
+        android:id="@+id/title"
         android:textColor="#dd000000"
         android:textStyle="bold"
         android:text="@string/choose_picture_from" />
