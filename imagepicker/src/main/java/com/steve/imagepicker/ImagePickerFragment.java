@@ -215,9 +215,9 @@ public class ImagePickerFragment extends BottomSheetDialogFragment implements Im
             return;
         }
         CropImage.activity(uri)
-                .setAspectRatio(1, 1)
+                .setAspectRatio(4, 3)
                 .setActivityTitle(getString(R.string.app_name))
-                .setRequestedSize(512, 512, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
+                .setRequestedSize(1024, 1024, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
                 .start(getContext(), this);
         /*
         Intent cropIntent = new Intent("com.android.camera.action.CROP");

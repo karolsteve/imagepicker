@@ -29,7 +29,7 @@ ext {
     siteUrl = 'https://github.com/karolsteve/imagepicker'
     gitUrl = 'https://github.com/karolsteve/imagepicker.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'karolsteve'
     developerName = 'Steve Tchatchouang'
